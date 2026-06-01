@@ -13,15 +13,33 @@ from charts import create_balance_chart
 
 st.set_page_config(
     page_title="Financial Survival Simulator",
-    page_icon="",
+    page_icon="💰",
     layout="wide"
 )
+
+st.markdown("""
+<style>
+
+div[data-testid="metric-container"]{
+    border:1px solid #333;
+    padding:12px;
+    border-radius:12px;
+}
+
+.block-container{
+    padding-top:2rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.title(" Financial Survival Simulator")
 
 st.caption(
-    "Predict possible financial futures using simulation and probabilistic modeling."
+    "Track. Simulate. Plan. Forecast your financial future using probabilistic financial modeling."
 )
+
+st.divider()
 
 
 # =========================================
@@ -253,7 +271,13 @@ line_chart = create_balance_chart(history)
 histogram_fig = px.histogram(
     x=final_balances,
     nbins=30,
-    title="Distribution of Final Balances"
+    title="Possible Financial Outcomes"
+)
+
+histogram_fig.update_layout(
+    template="plotly_dark",
+    xaxis_title="Final Balance",
+    yaxis_title="Number of Simulations"
 )
 
 expense_data = pd.DataFrame({
@@ -286,7 +310,7 @@ else:
 tab1, tab2, tab3 = st.tabs([
     " Dashboard",
     " Analytics",
-    " Simulation Details"
+    " Reports & Events"
 ])
 
 
@@ -315,15 +339,53 @@ with tab1:
         f"{bankruptcy_probability:.1f}%"
     )
 
-    st.info(f"""
-    Scenario Summary:
+    st.divider()
 
-    • Monthly Income: ${income}
-    • Monthly Expenses: ${expenses}
-    • Inflation Rate: {inflation_rate}%
-    • Investment Return: {investment_return}%
-    • Salary Growth: {salary_growth}%
-    """)
+st.subheader(" Financial Insights")
+
+expense_ratio = expenses / income if income > 0 else 0
+
+if expense_ratio > 0.8:
+
+    st.error(
+        " Your expenses consume more than 80% of your income."
+    )
+
+elif expense_ratio > 0.6:
+
+    st.warning(
+        " Your spending is moderately high."
+    )
+
+else:
+
+    st.success(
+        " Your income comfortably supports your lifestyle."
+    )
+
+if final_balance > initial_savings:
+
+    st.success(
+        " Your savings are growing over time."
+    )
+
+else:
+
+    st.error(
+        " Your financial position is weakening."
+    )
+
+if investment_return > inflation_rate:
+
+    st.success(
+        " Investments are beating inflation."
+    )
+
+else:
+
+    st.warning(
+        " Inflation may outpace your investments."
+    )
 
     st.success(
         f"Final Balance After {months} Months: ${final_balance:.2f}"
@@ -349,7 +411,9 @@ with tab1:
         st.error("You went bankrupt during the simulation.")
 
     # Financial Health
-    st.subheader("Financial Health")
+    st.divider()
+
+    st.subheader(" Financial Health")
 
     st.caption("""
     Financial health is based on the ratio between
@@ -383,6 +447,22 @@ with tab1:
 
         st.error("High probability of financial instability.")
 
+    st.divider()
+
+with st.expander(" What If Scenarios"):
+
+    st.markdown("""
+### Try Experimenting With
+
+- Increase expenses by 20%
+- Increase inflation to 10%
+- Reduce salary growth
+- Increase investment return
+- Extend simulation period
+
+Observe how your financial outlook changes.
+""")    
+
 
 # =========================================
 # ANALYTICS TAB
@@ -394,9 +474,20 @@ with tab2:
 
     st.plotly_chart(line_chart)
 
+st.info(
+    "This chart shows how your balance changes month-by-month."
+)
     st.plotly_chart(histogram_fig)
 
+st.info(
+    "This chart shows the distribution of possible future outcomes."
+)
+
     st.plotly_chart(pie_chart)
+
+st.info(
+    "This chart compares spending against potential savings."
+)
 
     st.subheader("Monte Carlo Analysis")
 
@@ -424,7 +515,9 @@ with tab2:
 
 with tab3:
 
-    st.header("Simulation Events")
+    st.header(" Reports & Events")
+
+st.subheader("Recent Financial Events")
 
     if emergencies:
 

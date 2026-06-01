@@ -16,4 +16,10 @@ def create_balance_chart(history):
         title="Savings Growth Over Time"
     )
 
+    fig.update_layout(
+        template="plotly_dark",
+        xaxis_title="Month",
+        yaxis_title="Balance ($)"
+    )
+
     return fig
