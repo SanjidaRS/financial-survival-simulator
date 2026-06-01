@@ -468,26 +468,31 @@ Observe how your financial outlook changes.
 # ANALYTICS TAB
 # =========================================
 
+# =========================================
+# ANALYTICS TAB
+# =========================================
+
 with tab2:
 
     st.header("Analytics")
 
     st.plotly_chart(line_chart)
 
-st.info(
-    "This chart shows how your balance changes month-by-month."
-)
+    st.info(
+        "This chart shows how your balance changes month-by-month."
+    )
+
     st.plotly_chart(histogram_fig)
 
-st.info(
-    "This chart shows the distribution of possible future outcomes."
-)
+    st.info(
+        "This chart shows the distribution of possible future outcomes."
+    )
 
     st.plotly_chart(pie_chart)
 
-st.info(
-    "This chart compares spending against potential savings."
-)
+    st.info(
+        "This chart compares spending against potential savings."
+    )
 
     st.subheader("Monte Carlo Analysis")
 
@@ -507,7 +512,6 @@ st.info(
         "Goal Achievement Rate",
         f"{goal_probability:.1f}%"
     )
-
 
 # =========================================
 # DETAILS TAB
