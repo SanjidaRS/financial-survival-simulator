@@ -13,11 +13,11 @@ from charts import create_balance_chart
 
 st.set_page_config(
     page_title="Financial Survival Simulator",
-    page_icon="💰",
+    page_icon="",
     layout="wide"
 )
 
-st.title("💰 Financial Survival Simulator")
+st.title(" Financial Survival Simulator")
 
 st.caption(
     "Predict possible financial futures using simulation and probabilistic modeling."
@@ -153,7 +153,7 @@ st.sidebar.info(
 # SIDEBAR HELP SECTIONS
 # =========================================
 
-with st.sidebar.expander("ℹ️ How It Works"):
+with st.sidebar.expander(" How It Works"):
 
     st.write("""
     • Enter your financial details.
@@ -170,7 +170,7 @@ with st.sidebar.expander("ℹ️ How It Works"):
       to estimate financial risk.
     """)
 
-with st.sidebar.expander("❓ FAQ"):
+with st.sidebar.expander(" FAQ"):
 
     st.write("""
     Q: What is Monte Carlo simulation?
@@ -192,7 +192,7 @@ with st.sidebar.expander("❓ FAQ"):
     A: High expenses relative to income.
     """)
 
-with st.sidebar.expander("📚 Financial Terms"):
+with st.sidebar.expander(" Financial Terms"):
 
     st.write("""
     • Inflation:
@@ -284,9 +284,9 @@ else:
 # =========================================
 
 tab1, tab2, tab3 = st.tabs([
-    "📊 Dashboard",
-    "📈 Analytics",
-    "⚙️ Simulation Details"
+    " Dashboard",
+    " Analytics",
+    " Simulation Details"
 ])
 
 
