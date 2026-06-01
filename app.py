@@ -468,10 +468,6 @@ Observe how your financial outlook changes.
 # ANALYTICS TAB
 # =========================================
 
-# =========================================
-# ANALYTICS TAB
-# =========================================
-
 with tab2:
 
     st.header("Analytics")
