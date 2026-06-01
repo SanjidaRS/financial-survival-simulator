@@ -325,73 +325,67 @@ with tab1:
     col1, col2, col3 = st.columns(3)
 
     col1.metric(
-        "Final Balance",
+        " Final Balance",
         f"${final_balance:.2f}"
     )
 
     col2.metric(
-        "Goal Success Rate",
+        " Goal Success Rate",
         f"{goal_probability:.1f}%"
     )
 
     col3.metric(
-        "Bankruptcy Risk",
+        " Bankruptcy Risk",
         f"{bankruptcy_probability:.1f}%"
     )
 
     st.divider()
 
-st.subheader(" Financial Insights")
+    st.subheader(" Financial Insights")
 
-expense_ratio = expenses / income if income > 0 else 0
+    expense_ratio = expenses / income if income > 0 else 0
 
-if expense_ratio > 0.8:
+    if expense_ratio > 0.8:
+        st.error(
+            " Your expenses consume more than 80% of your income."
+        )
 
-    st.error(
-        " Your expenses consume more than 80% of your income."
-    )
+    elif expense_ratio > 0.6:
+        st.warning(
+            " Your spending is moderately high."
+        )
 
-elif expense_ratio > 0.6:
+    else:
+        st.success(
+            " Your income comfortably supports your lifestyle."
+        )
 
-    st.warning(
-        " Your spending is moderately high."
-    )
+    if final_balance > initial_savings:
+        st.success(
+            " Your savings are growing over time."
+        )
 
-else:
+    else:
+        st.error(
+            " Your financial position is weakening."
+        )
 
-    st.success(
-        " Your income comfortably supports your lifestyle."
-    )
+    if investment_return > inflation_rate:
+        st.success(
+            " Investments are beating inflation."
+        )
 
-if final_balance > initial_savings:
+    else:
+        st.warning(
+            " Inflation may outpace your investments."
+        )
 
-    st.success(
-        " Your savings are growing over time."
-    )
-
-else:
-
-    st.error(
-        " Your financial position is weakening."
-    )
-
-if investment_return > inflation_rate:
-
-    st.success(
-        " Investments are beating inflation."
-    )
-
-else:
-
-    st.warning(
-        " Inflation may outpace your investments."
-    )
+    st.divider()
 
     st.success(
         f"Final Balance After {months} Months: ${final_balance:.2f}"
     )
 
-    # Savings Goal
     if final_balance >= savings_goal:
 
         st.success(
@@ -406,23 +400,18 @@ else:
             f"You are ${remaining:.2f} away from your goal."
         )
 
-    # Bankruptcy
     if bankrupt:
-        st.error("You went bankrupt during the simulation.")
+        st.error(
+            " You went bankrupt during the simulation."
+        )
 
-    # Financial Health
     st.divider()
 
     st.subheader(" Financial Health")
 
-    st.caption("""
-    Financial health is based on the ratio between
-    monthly expenses and income.
-    """)
-
     if stress_score < 0.5:
 
-        st.success("🟢 Financially Healthy")
+        st.success("🟢 Excellent Financial Health")
 
     elif stress_score < 0.8:
 
@@ -432,7 +421,6 @@ else:
 
         st.error("🔴 High Financial Stress")
 
-    # Risk Interpretation
     st.subheader("Risk Interpretation")
 
     if bankruptcy_probability < 20:
@@ -445,13 +433,15 @@ else:
 
     else:
 
-        st.error("High probability of financial instability.")
+        st.error(
+            "High probability of financial instability."
+        )
 
     st.divider()
 
-with st.expander(" What If Scenarios"):
+    with st.expander(" What If Scenarios"):
 
-    st.markdown("""
+        st.markdown("""
 ### Try Experimenting With
 
 - Increase expenses by 20%
@@ -461,7 +451,7 @@ with st.expander(" What If Scenarios"):
 - Extend simulation period
 
 Observe how your financial outlook changes.
-""")    
+""")
 
 
 # =========================================
@@ -517,7 +507,7 @@ with tab3:
 
     st.header(" Reports & Events")
 
-st.subheader("Recent Financial Events")
+    st.subheader("Recent Financial Events")
 
     if emergencies:
 
