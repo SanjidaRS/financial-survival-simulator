@@ -13,7 +13,7 @@ from charts import create_balance_chart
 
 st.set_page_config(
     page_title="Financial Survival Simulator",
-    page_icon="💰",
+    page_icon="",
     layout="wide"
 )
 
